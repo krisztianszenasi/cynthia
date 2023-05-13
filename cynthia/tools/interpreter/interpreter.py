@@ -1,10 +1,11 @@
 """Cynthia language interpreter definition."""
 
 import re
+from decimal import Decimal
 from io import TextIOBase
 
 from cynthia.tools.interpreter.exceptions import (
-    FunctionDoesNotExistError, VariableDoesNotExitError, VisitorDoesNotExistError,
+    FunctionDoesNotExistError, InvalidGlobalVariableError, VariableDoesNotExitError, VisitorDoesNotExistError,
 )
 from cynthia.tools.lexer.supported_tokens import TokenType
 from cynthia.tools.nodes import (
@@ -56,6 +57,7 @@ class Interpreter(NodeVisitor):
     def __init__(self, parser: Parser = None, global_variables: dict = None):
         self.parser = parser if parser else Parser()
         self.global_variables = global_variables if global_variables else {}
+        self._cast_global_variables()
 
     def visit_program_node(self, node: ProgramNode):
         for statement in node.statements:
@@ -115,3 +117,17 @@ class Interpreter(NodeVisitor):
                     extensions=self.supported_file_extensions,
                 ),
             )
+
+    def _cast_global_variables(self):
+        casted_global = {}
+        for variable_name, variable_value in self.global_variables.items():
+            try:
+                casted_global[variable_name] = Decimal(variable_value)
+            except Exception:
+                raise InvalidGlobalVariableError(
+                    'Global variable "{name}" has an invalid type "{type}"'.format(
+                        name=variable_name,
+                        type=type(variable_value).__name__,
+                    ),
+                )
+        self.global_variables = casted_global

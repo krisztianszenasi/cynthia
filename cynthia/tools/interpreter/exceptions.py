@@ -15,3 +15,7 @@ class VariableDoesNotExitError(InterpreterError):
 
 class FunctionDoesNotExistError(InterpreterError):
     """Exception when function does not exist."""
+
+
+class InvalidGlobalVariableError(InterpreterError):
+    """Exception when invalid typed global variable was passed."""
