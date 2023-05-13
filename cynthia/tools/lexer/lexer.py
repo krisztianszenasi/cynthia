@@ -34,7 +34,7 @@ class Lexer(object):
         TextMatcherTokenLogic(TokenType.COMMA, text_to_match=','),
         TextMatcherTokenLogic(TokenType.SPACE, text_to_match=' '),
         TextMatcherTokenLogic(TokenType.EOL, text_to_match='\n'),
-        NumberTokenLogic(TokenType.INTEGER),
+        NumberTokenLogic(TokenType.NUMBER),
         IDNameTokenLogic(TokenType.ID),
         CommentTokenLogic(TokenType.COMMENT),
     ]

@@ -6,7 +6,7 @@ from enum import Enum
 class TokenType(Enum):
     """Supported token types."""
 
-    INTEGER = 'INTEGER'
+    NUMBER = 'NUMBER'
     PLUS = 'PLUS'
     MINUS = 'MINUS'
     ASTERISK = 'ASTERISK'

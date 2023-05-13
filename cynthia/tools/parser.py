@@ -137,7 +137,7 @@ class Parser(object):
         node = None
 
         match(token.type):
-            case TokenType.INTEGER:
+            case TokenType.NUMBER:
                 node = NumberNode(token=self.eat_current())
             case TokenType.ID:
                 if self.next_token.type == TokenType.L_PAREN:

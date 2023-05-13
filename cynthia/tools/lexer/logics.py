@@ -120,17 +120,16 @@ class NumberTokenLogic(PatternMatcherTokenLogic):
     """Token logic for numbers."""
 
     supported_first_chars = digits
-    supported_chars = digits
+    supported_chars = f'{digits}.'
 
     def handle_input(self, input_txt: str, pos: int) -> Token:
-        # get leading part of the number
-        if token := super().handle_input(input_txt, pos):
-            if self.current_char == '.':
-                if trailing_token := super().handle_input(input_txt, pos + 1):
-                    token.value += f'.{trailing_token.value}'
-                else:
-                    token = None
-        return token
+        token = super().handle_input(input_txt, pos)
+        if token is not None and self._dot_placement_correct(token.value):
+            return token
+        return None
+
+    def _dot_placement_correct(self, number_text: str) -> bool:
+        return not number_text.endswith('.') and number_text.count('.') <= 1
 
 
 class CommentTokenLogic(PatternMatcherTokenLogic):
