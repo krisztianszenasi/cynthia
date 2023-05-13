@@ -28,7 +28,7 @@ Prints the arguments to the standard output.
 
 # Installation
 
-`pip install cynthia`
+`pip install cynthia-language`
 
 # Usage
 
