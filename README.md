@@ -125,11 +125,11 @@ args
 Language tools can be used directly.
 
 ```
-from cynthia.tools import Parser
+from cynthia.tools import Interpreter
 
-parser = Parser()
-parser.parse('x=1+2')
+interpreter = Interpreter()
+interpreter.interpret('x=1+2')
 
-parser['x']
+interpreter['x']
 # 3
 ```
