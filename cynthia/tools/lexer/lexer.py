@@ -10,7 +10,7 @@ from cynthia.tools.lexer.supported_tokens import TokenType
 from cynthia.tools.lexer.tokens import Token
 
 
-class InputWasNotFullyProcessedError(Exception):
+class UnsupportedTokenError(Exception):
     """Raised when the input wasn't fully processed."""
 
 
@@ -54,7 +54,7 @@ class Lexer(object):
             token = self.get_next_token(text, position)
 
         if position + 1 < len(text):
-            raise InputWasNotFullyProcessedError('Input text was not fully processed due to token error.')
+            raise UnsupportedTokenError(f'Unsupported input starting with {text[position]}.')
 
         tokens.append(Token(TokenType.EOF, None))
         return tokens
