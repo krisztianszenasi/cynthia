@@ -24,7 +24,7 @@ class NodeVisitor(object):
         return visitor(node)
 
     def generic_visit(self, node):
-        raise VisitorDoesNotExistError(node=node)
+        raise VisitorDoesNotExistError(f'Visitor does not exit for node {node}.')
 
     def _pascal_to_snake(self, pascal_name: str) -> str:
         return re.sub('(?<!^)(?=[A-Z])', '_', pascal_name).lower()
@@ -84,8 +84,8 @@ class Interpreter(NodeVisitor):
             raise VariableDoesNotExitError(f' Variable {variable_node.name} does not exist.')
 
     def visit_function_node(self, function_node: FunctionNode):
-        args = [self.visit(arg) for arg in function_node.args]
         if core_function := self.core_functions.get(function_node.token.value):
+            args = [self.visit(arg) for arg in function_node.args]
             return core_function(*args)
         raise FunctionDoesNotExistError(f' Function {function_node.name} does not exist.')
 
