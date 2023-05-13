@@ -46,12 +46,12 @@ cynthia> 4 * x - 5
 31
 ```
 
-## executing `.cyn` files
+## executing `.cynthia` files
 
-Cynthia language code can be written in `.cyn` files:
+Cynthia language code can be written in `.cynthia` files:
 
 ```
-# example.cyn file
+# example.cynthia file
 
 # you can write comments
 a = 1
@@ -65,7 +65,7 @@ print(result)
 
 Which can be executed with the interpreter:
 
-`python -m cynthia example.cyn`
+`python -m cynthia example.cynthia`
 
 # CFG for the syntax
 

@@ -33,7 +33,7 @@ class NodeVisitor(object):
 class Interpreter(NodeVisitor):
     """Interpreter will evaluate a given AST."""
 
-    supported_file_extensions = ['cyn']
+    supported_file_extensions = ['cynthia']
 
     binary_logics = {
         TokenType.PLUS: lambda left, right: left + right,
