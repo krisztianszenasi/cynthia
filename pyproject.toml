@@ -18,5 +18,5 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/"
-"Bug Tracker" = "https://github.com/"
+"Homepage" = "https://github.com/krisztianszenasi/cynthia"
+"Bug Tracker" = "https://github.com/krisztianszenasi/cynthia/issues"
